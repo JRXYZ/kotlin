@@ -16,7 +16,9 @@
 
 package org.jetbrains.kotlin.cli.common.arguments;
 
-import org.jetbrains.annotations.NotNull;
+import com.intellij.util.SmartList;
+
+import java.util.List;
 
 public abstract class CommonCompilerArguments extends CommonToolArguments {
     public static final long serialVersionUID = 0L;
@@ -87,10 +89,9 @@ public abstract class CommonCompilerArguments extends CommonToolArguments {
     )
     public String coroutinesState = WARN;
 
-    @NotNull
-    public static CommonCompilerArguments createDefaultInstance() {
-        return new DummyImpl();
-    }
+    public List<String> freeArgs = new SmartList<>();
+
+    public transient ArgumentParseErrors errors = new ArgumentParseErrors();
 
     public static final String WARN = "warn";
     public static final String ERROR = "error";
